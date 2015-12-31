@@ -17,10 +17,10 @@ class SmallOven
 
   def bake
     unless @state == 'on'
-      puts "Oven not ON!"
+      raise "Oven not ON!"
     end
     if @contents == nil
-      puts "Nothing in the oven"
+      raise "Nothing in the oven"
     end
     "#{@contents}"
   end
@@ -31,7 +31,14 @@ oven.turn_on
 
 items = ['Pie', 'Pizza', 'Coke', nil]
 
+# begin - rescue is like try - catch
 items.each do |item|
-  oven.keep(item)
-  puts "Serving #{oven.bake}"
+  begin
+    oven.keep(item)
+    puts "Serving #{oven.bake}"
+    oven.turn_off
+  rescue
+    puts "Rescued"
+  end
+
 end
