@@ -19,7 +19,7 @@ class SmallOven
     unless @state == 'on'
       raise "Oven not ON!"
     end
-    if @contents == nil
+    if @contents.nil?
       raise "Nothing in the oven"
     end
     "#{@contents}"
@@ -36,9 +36,9 @@ items.each do |item|
   begin
     oven.keep(item)
     puts "Serving #{oven.bake}"
-    oven.turn_off
-  rescue
-    puts "Rescued"
+    # capture the exception thrown
+  rescue => error
+    puts "Error : #{error.message}"
   end
 
 end
