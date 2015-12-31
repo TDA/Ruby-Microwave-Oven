@@ -37,32 +37,33 @@ class SmallOven
   end
 end
 
-oven = SmallOven.new
-oven.turn_on
-
-items = ['Pie', 'Pizza', 'Coke', nil]
-
-oven.turn_off
-# begin - rescue is like try - catch
-begin
-  items.each do |item|
-    oven.keep(item)
-    puts "Serving #{oven.bake}"
-    # capture the exception thrown
-  end
-rescue OvenOffError => error
-  puts "Error : #{error.message}"
-  #try to turn it on
+# run only if main pgm
+if __FILE__ == $0
+  oven = SmallOven.new
   oven.turn_on
-  # executes the same code again :O have never heard of
-  # this in other langs iv written code in
-  puts "Retrying, after turning on"
-  retry
-rescue OvenEmptyError => error
-  puts "Error : #{error.message}"
-# ensure is just like finally, so place after
-# all rescues, and before the end section
-ensure
-  puts "Ensuring that oven is turned off after everything"
-  #oven.turn_off
+  items = ['Pie', 'Pizza', 'Coke', nil]
+  oven.turn_off
+  # begin - rescue is like try - catch
+  begin
+    items.each do |item|
+      oven.keep(item)
+      puts "Serving #{oven.bake}"
+      # capture the exception thrown
+    end
+  rescue OvenOffError => error
+    puts "Error : #{error.message}"
+    #try to turn it on
+    oven.turn_on
+    # executes the same code again :O have never heard of
+    # this in other langs iv written code in
+    puts "Retrying, after turning on"
+    retry
+  rescue OvenEmptyError => error
+    puts "Error : #{error.message}"
+  # ensure is just like finally, so place after
+  # all rescues, and before the end section
+  ensure
+    puts "Ensuring that oven is turned off after everything"
+    #oven.turn_off
+  end
 end
