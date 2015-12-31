@@ -40,7 +40,7 @@ end
 # run only if main pgm
 if __FILE__ == $0
   oven = SmallOven.new
-  oven.turn_on
+  overesr = oven.turn_on
   items = ['Pie', 'Pizza', 'Coke', nil]
   oven.turn_off
   # begin - rescue is like try - catch
