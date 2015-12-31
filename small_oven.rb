@@ -19,7 +19,7 @@ class SmallOven
     unless @state == 'on'
       puts "Oven not ON!"
     end
-    if @contents == nil?
+    if @contents == nil
       puts "Nothing in the oven"
     end
     "#{@contents}"
@@ -28,5 +28,10 @@ end
 
 oven = SmallOven.new
 oven.turn_on
-oven.keep("Pie")
-puts "Serving #{oven.bake}"
+
+items = ['Pie', 'Pizza', 'Coke', nil]
+
+items.each do |item|
+  oven.keep(item)
+  puts "Serving #{oven.bake}"
+end
