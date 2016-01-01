@@ -11,6 +11,9 @@ end
 class SmallOven
   attr_accessor :contents, :state
 
+  def initialize
+    @state = 'off'
+  end
   def turn_on
     @state = 'on'
     puts "Turning on"
