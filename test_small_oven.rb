@@ -24,4 +24,18 @@ class TestSmallOven < MiniTest::Test
     refute_equal(oven.state, "off", "Oven state is off even after switching on!")
     # other asserts include assert_includes, assert_raises, assert_instance_of
   end
+
+  def test_bake
+    oven = SmallOven.new
+    assert_raises(OvenOffError, "No exception raised") do
+      oven.bake
+    end
+    assert_raises(OvenEmptyError, "No exception raised") do
+      oven.turn_on
+      oven.bake
+    end
+    oven.turn_on
+    oven.contents = "apple"
+    assert_equal(oven.contents, "apple", "Oven contains wrong item")
+  end
 end
