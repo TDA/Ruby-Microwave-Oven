@@ -55,8 +55,10 @@ if __FILE__ == $0
     end
   rescue OvenOffError => error
     puts "Error : #{error.message}"
+
     #try to turn it on
     oven.turn_on
+
     # executes the same code again :O have never heard of
     # this in other langs iv written code in
     puts "Retrying, after turning on"
